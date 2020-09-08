@@ -8,6 +8,8 @@
 /src/preload.php
 /var/
 /vendor/
+!/var/import/.gitkeep
+/var/import/*
 ###< symfony/framework-bundle ###
 
 ###> symfony/phpunit-bridge ###

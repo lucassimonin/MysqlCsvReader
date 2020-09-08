@@ -4,6 +4,8 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
+    csv_import_folder: '%kernel.project_dir%/var/import'
+    csv_folder_mysql: '/var/lib/mysql-files'
 
 services:
     # default configuration for services in *this* file
@@ -29,3 +31,11 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+    App\Repository\Sql\MysqlCsvRepository:
+        arguments:
+            $sqlConnection: '@database_connection'
+
+    App\Utils\MysqlCsvTools:
+        arguments:
+            $csvPathFolder: '%csv_import_folder%'
+            $csvMysqlFolder: '%csv_folder_mysql%'
